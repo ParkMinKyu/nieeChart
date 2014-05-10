@@ -19,7 +19,7 @@ $(function(){
 		var rspace = (height-rtab)/2;
 		var cAraay = new Array();
 		var rAraay = new Array();
-		
+
 		canvas = document.getElementById("canvas");
 		canvas.width = width;
 		canvas.height = height;
@@ -39,19 +39,19 @@ $(function(){
 			ctx.lineTo(endX,(startY+endY));
 			ctx.fillText(i,endX,(startY+endY));
 			ctx.stroke();
-			
+
 			var colObj = {
 					startX : startX, 
 					startY : startY, 
 					endX : endX, 
-					endY : (endX+endY),
+					endY : (startY+endY),
 					rtab : 30,
 					ctab : ctab
 			}
-			
+
 			cAraay.push(colObj);
 		}
-		
+
 		var command = '';
 		while(command != 'x'){
 			//command = prompt("사다리 정보를 입력하세요(x는 입력 완료).","");
@@ -59,12 +59,12 @@ $(function(){
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -78,12 +78,12 @@ $(function(){
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -97,12 +97,12 @@ $(function(){
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -116,12 +116,12 @@ $(function(){
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -135,12 +135,12 @@ $(function(){
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -150,17 +150,17 @@ $(function(){
 					ctab : ctab
 			}
 			rAraay.push(rowObj);
-			
+
 			command = '8 2';
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -170,17 +170,17 @@ $(function(){
 					ctab : ctab
 			}
 			rAraay.push(rowObj);
-			
+
 			command = '4 3';
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -190,17 +190,17 @@ $(function(){
 					ctab : ctab
 			}
 			rAraay.push(rowObj);
-			
+
 			command = '7 3';
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -210,17 +210,17 @@ $(function(){
 					ctab : ctab
 			}
 			rAraay.push(rowObj);
-			
+
 			command = '10 3';
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -230,17 +230,17 @@ $(function(){
 					ctab : ctab
 			}
 			rAraay.push(rowObj);
-			
+
 			command = '2 4';
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -250,17 +250,17 @@ $(function(){
 					ctab : ctab
 			}
 			rAraay.push(rowObj);
-			
+
 			command = '6 4';
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -270,17 +270,17 @@ $(function(){
 					ctab : ctab
 			}
 			rAraay.push(rowObj);
-			
+
 			command = '8 4';
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -290,17 +290,17 @@ $(function(){
 					ctab : ctab
 			}
 			rAraay.push(rowObj);
-			
+
 			command = '3 5';
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -310,17 +310,17 @@ $(function(){
 					ctab : ctab
 			}
 			rAraay.push(rowObj);
-			
+
 			command = '5 5';
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -330,17 +330,17 @@ $(function(){
 					ctab : ctab
 			}
 			rAraay.push(rowObj);
-			
+
 			command = '7 5';
 			var idx = command.split(' ');
 			var nowObj = cAraay[parseInt(idx[1])-1];
 			var nextObj = cAraay[parseInt(idx[1])];
-			
+
 			ctx.beginPath();
 			ctx.moveTo(nowObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.lineTo(nextObj.startX,(nowObj.startY)+(parseInt(idx[0])*nowObj.rtab));
 			ctx.stroke();
-			
+
 			var rowObj = {
 					startX : nowObj.startX, 
 					startY : (nowObj.startY)+(parseInt(idx[0])*nowObj.rtab), 
@@ -350,15 +350,130 @@ $(function(){
 					ctab : ctab
 			}
 			rAraay.push(rowObj);
-			
+
 			command = 'x';
 		}
-		
-		var user = '';
-		while(user != 'x'){
-			user = prompt("사다리 게임을 시작할 출발 지점을 입력하세요(x는 입력 완료).","");
+
+		var userInput = '';
+		while(userInput != 'x'){
+			userInput = prompt("사다리 게임을 시작할 출발 지점을 입력하세요(x는 입력 완료).","");
+			var isExit = false;
+			while(!isExit){
+				var nowObj = cAraay[parseInt(userInput)-1];
+				var startY = nowObj.startY;
+				var endY = startY + nowObj.endY;
+				var pos = parseInt(userInput)-1;
+				var moveX = nowObj.startX ;
+				var moveY = nowObj.startY ;
+				var lineX = 0 ;
+				var lineY = 0 ;
+				var color1 = '#';
+				for(var j = 0 ; j < 6 ; j ++){
+					color1 += parseInt(Math.random()*(15)).toString(16);
+				}
+				ctx.strokeStyle = color1;
+				while(startY < endY){
+					for(var i = 0 ; i < rAraay.length ; i++){
+						if(startY == rAraay[i].startY && nowObj.startX == rAraay[i].startX){
+							if(nowObj.startX < rAraay[i].endX){
+								ctx.beginPath();
+								moveX = moveX == 0 ? nowObj.startX : moveX;
+								moveY = moveY ==0 ?  nowObj.startY : moveY;
+								lineX = nowObj.startX;
+								lineY = rAraay[i].startY;
+								ctx.moveTo(moveX,moveY);
+								ctx.lineTo(lineX,lineY);
+								moveX = lineX;
+								moveY = lineY;
+								lineX = rAraay[i].endX;
+								lineY = rAraay[i].endY;
+								ctx.moveTo(moveX,moveY);
+								ctx.lineTo(lineX,lineY);
+								moveX = lineX;
+								moveY = lineY;
+								ctx.stroke();
+								
+								pos++;
+								nowObj = cAraay[pos];
+								console.log(pos);
+							}else if(nowObj.startX > rAraay[i].endX){
+								ctx.beginPath();
+								moveX = moveX == 0 ? nowObj.startX : moveX;
+								moveY = moveY ==0 ?  nowObj.startY : moveY;
+								lineX = nowObj.startX;
+								lineY = rAraay[i].startY;
+								ctx.moveTo(moveX,moveY);
+								ctx.lineTo(lineX,lineY);
+								moveX = lineX;
+								moveY = lineY;
+								lineX = rAraay[i].endX;
+								lineY = rAraay[i].endY;
+								ctx.moveTo(moveX,moveY);
+								ctx.lineTo(lineX,lineY);
+								moveX = lineX;
+								moveY = lineY;
+								ctx.stroke();
+								pos--;
+								nowObj = cAraay[pos];
+								console.log(pos);
+							}
+						}else if(startY == rAraay[i].startY && nowObj.endX == rAraay[i].endX){
+							if(nowObj.endX < rAraay[i].startX){
+								ctx.beginPath();
+								moveX = moveX == 0 ? nowObj.endX : moveX;
+								moveY = moveY ==0 ?  nowObj.startY : moveY;
+								lineX = nowObj.endX;
+								lineY = rAraay[i].startY;
+								ctx.moveTo(moveX,moveY);
+								ctx.lineTo(lineX,lineY);
+								moveX = lineX;
+								moveY = lineY;
+								lineX = rAraay[i].startX;
+								lineY = rAraay[i].startY;
+								ctx.moveTo(moveX,moveY);
+								ctx.lineTo(lineX,lineY);
+								moveX = lineX;
+								moveY = lineY;
+								ctx.stroke();
+								pos++;
+								nowObj = cAraay[pos];
+								console.log(pos);
+							}else if(nowObj.endX > rAraay[i].startX){
+								ctx.beginPath();
+								moveX = moveX == 0 ? nowObj.endX : moveX;
+								moveY = moveY ==0 ?  nowObj.startY : moveY;
+								lineX = nowObj.endX;
+								lineY = rAraay[i].startY;
+								ctx.moveTo(moveX,moveY);
+								ctx.lineTo(lineX,lineY);
+								moveX = lineX;
+								moveY = lineY;
+								lineX = rAraay[i].startX;
+								lineY = rAraay[i].startY;
+								ctx.moveTo(moveX,moveY);
+								ctx.lineTo(lineX,lineY);
+								moveX = lineX;
+								moveY = lineY;
+								ctx.stroke();
+								pos--;
+								nowObj = cAraay[pos];
+								console.log(pos);
+							}
+						}
+					}
+					isExit = true;
+					startY++;
+				}
+				ctx.beginPath();
+				lineX = nowObj.endX;
+				lineY = nowObj.endY;
+				ctx.moveTo(moveX,moveY);
+				ctx.lineTo(lineX,lineY);
+				ctx.stroke();
+				alert((pos +1 ) + "번 당첨 입니다.");
+			}
 		}
-		
+
 	});
 });
 </script>
@@ -370,4 +485,3 @@ $(function(){
 	<canvas id="canvas" style="border: 1px solid;"></canvas>
 </body>
 </html>
-
