@@ -175,9 +175,6 @@
 		var idx = sMaxVal.length;
 		var tempNum = '';
 
-		var rem = parseInt(maxVal%5);
-		return parseInt(maxVal) + rem;
-		/*
 		if(Math.round(parseInt(sMaxVal.charAt(0))*0.1) == 1){
 			if(parseInt(sMaxVal.charAt(0)) < 8){
 				tempNum = parseInt(sMaxVal.charAt(0)) + 1 ;
@@ -201,7 +198,6 @@
 		}
 		
 		return parseInt(tempNum);
-		*/
 	};
 
 	nieeChart.prototype.createObjVal = function(){

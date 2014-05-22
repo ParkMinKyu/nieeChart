@@ -43,6 +43,7 @@ var myChart ;
 			title : 'niee@naver.com',
 			titleSize : 10,
 			lineCount : 5,
+			maxNum : 15,
 			isTooltip : true,
 			toolStyle : "border:1px solid #000;width:100px;height:50px;background:#FF6600"
 		});
