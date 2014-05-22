@@ -266,6 +266,7 @@
 			ctx.fill();
 			startPI = startPI+endPI;
 		}
+		this.toolTipEvent();
 	};
 	
 	nieeChart.prototype.getArcVal = function(val){
