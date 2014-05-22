@@ -252,14 +252,15 @@
 		var c = this.canvas;
 		var ctx = this.context;
 		var centerX = parseInt(c.width/2);
-		var centerY = parseInt(c.height/2);;
+		var centerY = parseInt(c.height/2);
+		var r = centerX < centerY ? parseInt(centerX/2) : parseInt(centerY/2);
 		var array = this.array;
 		var startPI = 0;
 		for(var i = 0 ; i < array.length ; i ++){
 			var nowObj = array[i];
 			var endPI = this.getArcVal(nowObj.val);
 			ctx.beginPath();
-			ctx.arc(centerX, centerY, 200, startPI*Math.PI , (startPI+endPI)*Math.PI); //중앙x,중앙y,반지름,시작점,마지막점
+			ctx.arc(centerX, centerY, r, startPI*Math.PI , (startPI+endPI)*Math.PI); //중앙x,중앙y,반지름,시작점,마지막점
 			ctx.lineTo(centerX, centerY);
 			ctx.closePath();
 			ctx.fillStyle = nowObj.stColor;
