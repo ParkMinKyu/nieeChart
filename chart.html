@@ -3,7 +3,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<script type="text/javascript" src="niee-canvas-chart003.js"></script>
+<script type="text/javascript" src="niee-canvas-chart004.js"></script>
 <script type="text/javascript">
 var myChart ;
 	function gogo(){
@@ -14,13 +14,13 @@ var myChart ;
 		var len = parseInt(val);
 		var array = new Array();
 		for(var i = 0 ; i < len ; i ++){
-			var ran = Math.random()*15;
+			var ran = parseInt(Math.random()*150);
 			var color1 = '#';
 			for(var j = 0 ; j < 6 ; j ++){
 				color1 += parseInt(Math.random()*(15)).toString(16);
 			}
 			var chart = {
-					val : ran.toFixed(1),
+					val : ran,
 					label : '그래프'+(i+1),
 					stColor : color1,
 					edColor : 'white',
@@ -62,6 +62,7 @@ var myChart ;
 type : <select id="type">
 	<option value="rect">rect</option>
 	<option value="line">line</option>
+	<option value="arc">arc</option>
 </select>
 <button id="gogo" onclick="gogo()">gogo</button>
 <button id="clear" onclick="clearc()">clear</button>

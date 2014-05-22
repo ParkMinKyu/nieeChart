@@ -48,10 +48,9 @@
  * 5.myChart.setChart({ 
  * 	array : array, //막대정보가 담긴 Array //필수 
  * 	id : 'chartCanvas', //canvas id //필수
- *  type : 'rect||line', //차트 타입 선택
+ *  type : 'rect||line||arc', //차트 타입 선택
  * 	width : 600,  //넓이 없을경우 canvas의 width를 셋팅
  * 	height : 500, //높이 없을경우 canvas의 height를 셋팅
- *  labelWidth : 100, //라벨영역 width
  * 	isLine :true,  //경계바생성
  * 	title : 'niee@naver.com', //타이틀
  * 	titleSize : 10, //타이틀 글자크기
@@ -65,8 +64,9 @@
  */
 
 (function(window){
-
+	
 	var toolArray = null;
+	var toolDiv = null ;
 	var nieeChart = function(){
 			this.objCnt = 0;
 			this.maxVal = 0;
@@ -78,13 +78,15 @@
 			this.context = null;
 			this.width = 0;
 			this.height = 0;
-			this.labelWidth = 100;
 			this.isLine = false;
 			this.title = '';
 			this.maxNum  =  0;
 			this.titleSize  =  10;
 			this.isTooltip  =  false;
 			this.tooltipArray  =  null;
+			this.tooltip  =  function(obj){
+				this.tooltipArray.push(obj);
+			};
 			this.toolStyle  =  "border:1px solid #000;width:100px;height:50px;";
 	};
 	
@@ -98,7 +100,6 @@
 		this.type =	options ? options.type || this.type : this.type;
 		this.width =	options ? options.width || this.canvas.width : this.canvas.width;
 		this.height = options ? options.height || this.canvas.height : this.canvas.height;
-		this.labelWidth = options ? options.labelWidth || this.labelWidth : this.labelWidth;
 		this.isLine = options ? options.isLine || this.isLine : this.isLine;
 		this.title = options ? options.title || this.title : this.title;
 		this.titleSize = options ? options.titleSize || this.titleSize : this.titleSize;
@@ -109,13 +110,13 @@
 		this.toolStyle = options ? options.toolStyle || this.toolStyle : this.toolStyle;
 		
 		this.createChart();
-		this.createLine();
-		this.createObjVal();
-		this.createLabel();
-	};
-	
-	nieeChart.prototype.tooltip  =  function(obj){
-		this.tooltipArray.push(obj);
+		if(this.type == 'arc'){
+			this.createArc();
+		}else{
+			this.createLine();
+			this.createObjVal();
+			this.createLabel();
+		}
 	};
 
 	nieeChart.prototype.setObjCnt = function (array) {
@@ -148,8 +149,12 @@
 		var ctx = this.context;
 		var width = this.width;
 		var height = this.height;
-		c.width = width+this.labelWidth;
-		c.height = height+20;
+		if(width > c.width){
+			c.width = width;
+		}
+		if(height > c.height){
+			c.height = height;
+		}
 		ctx.save();
 		ctx.clearRect(0,0,c.width,c.height);
 		ctx.restore();
@@ -169,35 +174,18 @@
 			return this.maxNum;
 		}
 		
+		if(this.maxNum > 0){
+			return this.maxNum;
+		}
+		
 		var maxVal = this.maxVal;
 		var sMaxVal = maxVal.toString();
 		var tempLen = 1;
 		var idx = sMaxVal.length;
 		var tempNum = '';
 
-		if(Math.round(parseInt(sMaxVal.charAt(0))*0.1) == 1){
-			if(parseInt(sMaxVal.charAt(0)) < 8){
-				tempNum = parseInt(sMaxVal.charAt(0)) + 1 ;
-				tempLen = 1;
-			}else{
-				tempNum = 1 ;
-				tempLen = 0;
-			}
-		}else{
-			if(idx > 1 && Math.round(parseInt(sMaxVal.charAt(1))*0.1) == 1){
-				tempNum = parseInt(sMaxVal.charAt(0)) + 1 ;
-				tempLen = 1;
-			}else{
-				tempNum = sMaxVal.charAt(0) + 5 ;
-				tempLen = 1;
-			}
-		}
-		
-		for(var i = 0 ; i < (sMaxVal.length - tempLen) ; i++){
-			tempNum += "0";
-		}
-		
-		return parseInt(tempNum);
+		var rem = parseInt(maxVal%5);
+		return parseInt(maxVal) + rem;
 	};
 
 	nieeChart.prototype.createObjVal = function(){
@@ -260,6 +248,43 @@
 		}
 	};
 
+	nieeChart.prototype.createArc = function(){
+		var c = this.canvas;
+		var ctx = this.context;
+		var centerX = parseInt(c.width/2);
+		var centerY = parseInt(c.height/2);;
+		var array = this.array;
+		var startPI = 0;
+		for(var i = 0 ; i < array.length ; i ++){
+			var nowObj = array[i];
+			var endPI = this.getArcVal(nowObj.val);
+			ctx.beginPath();
+			ctx.arc(centerX, centerY, 200, startPI*Math.PI , (startPI+endPI)*Math.PI); //중앙x,중앙y,반지름,시작점,마지막점
+			ctx.lineTo(centerX, centerY);
+			ctx.closePath();
+			ctx.fillStyle = nowObj.stColor;
+			ctx.fill();
+			startPI = startPI+endPI;
+		}
+	};
+	
+	nieeChart.prototype.getArcVal = function(val){
+		var thisPer = parseInt(val);
+		var totalVal = this.getArcTotVal();
+		
+		return (thisPer/totalVal)*2; 
+	};
+
+	nieeChart.prototype.getArcTotVal = function(){
+		var array = this.array;
+		var totalVal = 0;
+		for(var i = 0 ; i < array.length ; i ++){
+			var obj = array[i];
+			totalVal += parseInt(obj.val);
+		}
+		return totalVal;
+	};
+	
 	nieeChart.prototype.createLine = function(){
 		if(this.isLine){
 			var ctx = this.context;
@@ -304,23 +329,16 @@
 			var textSize = obj.textSize || 10;
 			ctx.shadowBlur=0;
 			ctx.fillStyle= obj.textColor || '#000';
-			ctx.font = textSize > ((width/objCnt)/4/2)? (width/objCnt)/4/2 : textSize +'px Arial';
+			ctx.font = textSize +'px Arial';
 			var textX = x +((width/objCnt)/2)/2-textSize;
 			var textY = y;
-			var labelY = (((height / objCnt)>20?20:height / objCnt) * i) + (textSize > ((width/objCnt)/4/2)? (width/objCnt)/4/2 : textSize);
-			
-			ctx.fillStyle=obj.stColor||'black';
-			ctx.textBaseline="top";
-			ctx.fillRect(width + spaceX + 2 , labelY , (height/objCnt < 20 ? height/objCnt : 20) , (height/objCnt < 20 ? height/objCnt : 20));
-			ctx.fillText(obj.label, (width + spaceX + 2)+(height/objCnt < 20 ? height/objCnt : 20),labelY);
-			ctx.textBaseline="bottom";
+			ctx.fillText(obj.label, textX,textY - textSize);
 			ctx.fillText(obj.val, textX, textY - 1);
 			x+=((width/objCnt)/2)+((width/objCnt)/4);
 		}
 	};
 
 	nieeChart.prototype.toolTipEvent = function(){
-		var toolDiv = document.getElementById("toolTip"); ;
 		if(toolDiv == null){
 			toolDiv = document.createElement("div");
 			toolDiv.setAttribute('id','toolTip');
