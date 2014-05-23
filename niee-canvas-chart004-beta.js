@@ -353,8 +353,8 @@
 				var obj = toolArray[i];
 				if((e.offsetX > obj.x && e.offsetX < (obj.x + obj.width) )&& (e.offsetY > obj.y-20  && e.offsetY < (obj.y + obj.height))){
 					toolDiv.style.display = 'block';
-					toolDiv.style.top = (e.y+10)+"px";
-					toolDiv.style.left = (e.x)+10+"px";
+					toolDiv.style.top = (e.clientY+10)+"px";
+					toolDiv.style.left = (e.clientX)+10+"px";
 					toolDiv.innerHTML = obj.label + '<br>' + obj.val;
 					break;
 				}else{
